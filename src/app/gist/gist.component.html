@@ -1,0 +1,70 @@
+<div class="form-main__container">
+  <div class="form-container">
+    <form [formGroup]="createGist" (ngSubmit)="sendData()" class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>File Description</mat-label>
+        <input
+          matInput
+          placeholder="Enter File Description"
+          formControlName="fileDescription"
+        />
+        <mat-icon matSuffix>assignment</mat-icon>
+      </mat-form-field>
+
+      <div
+        *ngIf="
+          createGist.get('fileDescription')?.invalid &&
+          createGist.get('fileDescription')?.touched &&
+          createGist.get('fileDescription')?.dirty
+        "
+      >
+        <div *ngIf="createGist.get('fileDescription')?.hasError('required')">
+          <span style="color: #ff0000">File Description is required</span>
+        </div>
+
+        <div *ngIf="createGist.get('fileDescription')?.hasError('minlength')">
+          <span style="color: #ff0000">Minimum Length is 5</span>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>File Name</mat-label>
+        <input
+          matInput
+          placeholder="Enter File Name"
+          formControlName="fileName"
+        />
+        <mat-icon matSuffix>note_add</mat-icon>
+      </mat-form-field>
+
+      <div
+        *ngIf="
+          createGist.get('fileName')?.touched &&
+          createGist.get('fileName')?.invalid &&
+          createGist.get('fileName')?.dirty
+        "
+      >
+        <div *ngIf="createGist.get('fileName')?.hasError('required')">
+          <span style="color: #ff0000">File Name is required</span>
+        </div>
+        <div *ngIf="createGist.get('fileName')?.hasError('minlength')">
+          <span style="color: #ff0000">Minimum length is 5</span>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline" class="gist-comment">
+        <mat-label>File Content</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter Your Code Here"
+          formControlName="fileContent"
+          class="text-area"
+        ></textarea>
+      </mat-form-field>
+
+      <button type="submit" class="submit-btn" [disabled]="createGist.invalid">
+        Create Gist
+      </button>
+    </form>
+  </div>
+</div>
