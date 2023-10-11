@@ -41,5 +41,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# File Ignore
-src/app/gist/gist.component.ts
